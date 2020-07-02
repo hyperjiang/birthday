@@ -47,6 +47,11 @@ func ParseBirthday(date string) (*Birthday, error) {
 	return ParseBirthdayFromTime(t), nil
 }
 
+// Format returns the birthday in given format
+func (b Birthday) Format(layout string) string {
+	return b.Date.Format(layout)
+}
+
 func parseConstellation(month time.Month, day int) string {
 	switch month {
 	case time.January:
