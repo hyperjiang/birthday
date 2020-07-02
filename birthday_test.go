@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestParseBirthday(t *testing.T) {
+func TestParse(t *testing.T) {
 	should := require.New(t)
 
 	year := time.Now().Format("2006")
@@ -39,7 +39,7 @@ func TestParseBirthday(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		birthday, err := ParseBirthday(test.date)
+		birthday, err := Parse(test.date)
 		if test.invalid {
 			should.Error(err)
 		} else {
@@ -53,7 +53,7 @@ func TestParseBirthday(t *testing.T) {
 func TestFormat(t *testing.T) {
 	should := require.New(t)
 
-	birthday, err := ParseBirthday("2020-07-02")
+	birthday, err := Parse("2020-07-02")
 	should.NoError(err)
 	should.Equal("2/7/2020", birthday.Format("2/1/2006"))
 	should.Equal("Jul 2nd, 2020", birthday.Format("Jan 2nd, 2006"))
@@ -62,7 +62,7 @@ func TestFormat(t *testing.T) {
 func TestGetConstellation(t *testing.T) {
 	should := require.New(t)
 
-	birthday, err := ParseBirthday("2020-10-01")
+	birthday, err := Parse("2020-10-01")
 	should.NoError(err)
 
 	c, err := birthday.GetConstellation("zh")

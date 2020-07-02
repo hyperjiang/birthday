@@ -7,3 +7,17 @@
 [![Release](https://img.shields.io/github/release/hyperjiang/birthday.svg)](https://github.com/hyperjiang/birthday/releases)
 
 Parse a birthday to get the age and constellation.
+
+## Usage
+
+```
+import "github.com/hyperjiang/birthday"
+
+b, _ := birthday.Parse("2020-01-01")
+
+fmt.Println(b.Age)
+fmt.Println(b.Constellation)
+fmt.Println(b.GetConstellation("zh"))
+fmt.Println(b.Format("Jul 2nd, 2020"))
+
+```

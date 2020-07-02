@@ -20,8 +20,8 @@ type Birthday struct {
 	Constellation string
 }
 
-// ParseBirthdayFromTime parse birthday from given time
-func ParseBirthdayFromTime(t time.Time) *Birthday {
+// ParseFromTime parse birthday from given time
+func ParseFromTime(t time.Time) *Birthday {
 	birthday := &Birthday{
 		Date:  t,
 		Year:  t.Year(),
@@ -41,14 +41,14 @@ func ParseBirthdayFromTime(t time.Time) *Birthday {
 	return birthday
 }
 
-// ParseBirthday parse birthday from given string date
-func ParseBirthday(date string) (*Birthday, error) {
+// Parse parse birthday from given string date
+func Parse(date string) (*Birthday, error) {
 	t, err := php.DateCreate(date)
 	if err != nil {
 		return nil, err
 	}
 
-	return ParseBirthdayFromTime(t), nil
+	return ParseFromTime(t), nil
 }
 
 // Format returns the birthday in given format
