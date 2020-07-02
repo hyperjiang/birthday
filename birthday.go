@@ -1,9 +1,13 @@
 package birthday
 
 import (
+	"encoding/json"
+	"errors"
+	"io/ioutil"
 	"time"
 
 	"github.com/hyperjiang/php"
+	"github.com/markbates/pkger"
 )
 
 // Birthday is the birthday detail
@@ -50,6 +54,31 @@ func ParseBirthday(date string) (*Birthday, error) {
 // Format returns the birthday in given format
 func (b Birthday) Format(layout string) string {
 	return b.Date.Format(layout)
+}
+
+// GetConstellation gets constellation in given language
+func (b Birthday) GetConstellation(lang string) (string, error) {
+	f, err := pkger.Open("/i18n/" + lang + ".json")
+	if err != nil {
+		return b.Constellation, errors.New("Unsupported language: " + lang)
+	}
+	defer f.Close()
+
+	content, err := ioutil.ReadAll(f)
+	if err != nil {
+		return b.Constellation, errors.New("Fail to load file of " + lang)
+	}
+
+	m := make(map[string]string)
+	if err := json.Unmarshal(content, &m); err != nil {
+		return b.Constellation, errors.New("Fail to parse file of " + lang)
+	}
+
+	if v, ok := m[b.Constellation]; ok {
+		return v, nil
+	}
+
+	return b.Constellation, nil
 }
 
 func parseConstellation(month time.Month, day int) string {
