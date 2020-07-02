@@ -21,7 +21,7 @@ b, _ := birthday.Parse("2020-01-01")
 
 fmt.Println(b.Age)
 fmt.Println(b.Constellation)
-fmt.Println(b.GetConstellation("zh"))
-fmt.Println(b.Format("Jul 2nd, 2020"))
+fmt.Println(b.GetConstellation("zh")) // print constellation in Chinese
+fmt.Println(b.Format("Jul 2nd, 2006"))
 
 ```
