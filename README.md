@@ -8,10 +8,6 @@
 
 Parse a birthday to get the age and constellation.
 
-## Requirements
-- Go 1.13+
-- Go Modules
-
 ## Usage
 
 ```
