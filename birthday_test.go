@@ -59,6 +59,14 @@ func TestFormat(t *testing.T) {
 	should.Equal("Jul 2nd, 2020", birthday.Format("Jan 2nd, 2006"))
 }
 
+func TestString(t *testing.T) {
+	should := require.New(t)
+
+	birthday, err := Parse("2020-7-2")
+	should.NoError(err)
+	should.Equal("2020-07-02", birthday.String())
+}
+
 func TestGetConstellation(t *testing.T) {
 	should := require.New(t)
 

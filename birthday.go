@@ -56,6 +56,11 @@ func (b Birthday) Format(layout string) string {
 	return b.Date.Format(layout)
 }
 
+// String returns normalized date
+func (b Birthday) String() string {
+	return b.Format("2006-01-02")
+}
+
 // GetConstellation gets constellation in given language
 func (b Birthday) GetConstellation(lang string) (string, error) {
 	f, err := pkger.Open("/i18n/" + lang + ".json")
